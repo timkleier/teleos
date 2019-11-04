@@ -69,6 +69,11 @@ class ContentItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def content_item_params
-      params.require(:content_item).permit(:title, :description, :authors)
+      params.require(:content_item).permit(
+        :title, :description, :authors,
+        content_type: [:name],
+        content_sources: [:url]
+        # content_source_attributes: [:url]
+      )
     end
 end

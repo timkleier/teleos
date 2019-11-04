@@ -1,19 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @content_item.title %>
-</p>
+<%= link_to semantic_icon('angle left large link'), content_items_path %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @content_item.description %>
-</p>
+<h1 class="ui center aligned header"><%= @content_item.title %></h1>
 
-<p>
-  <strong>Authors:</strong>
-  <%= @content_item.authors %>
-</p>
+<div class="ui divider"></div>
 
-<%= link_to 'Edit', edit_content_item_path(@content_item) %> |
-<%= link_to 'Back', content_items_path %>
+<h2 class="ui header">Sources</h2>
+<div class="ui list">
+  <% @content_item.content_sources.with_associations(:content_type).each do |source| %>
+    <%= link_to source.url, class: 'item', target: "_blank" do %>
+      <%= content_type_icon(source.content_type.name) %>
+      <div class="content">
+        <div class="header"><%= source.url %></div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="ui divider"></div>
+
+<h2 class="ui header">Description</h2>
+<div>
+  <%= @content_item.description&.truncate(400) %>
+</div>
+
+<h2 class="ui header">Related Content</h2>
+<div class="ui list">
+  <%= link_to "#", class: 'item', target: "_blank" do %>
+    Title
+    <div class="content">
+      <div class="header">Link</div>
+      <div class="description">Placeholder description</div>
+    </div>
+  <% end %>
+</div>

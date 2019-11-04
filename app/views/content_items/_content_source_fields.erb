@@ -1,0 +1,12 @@
+<%= f.fields_for :content_type do |ff| %>
+  <div class="fields">
+    <div class="three wide field">
+      <%= f.label :content_type %>
+      <%= f.select :content_type, ContentType::CONTENT_TYPES, {}, class: 'ui compact dropdown' %>
+    </div>
+    <div class="thirteen wide field">
+      <%= f.label :url %>
+      <%= f.text_field :url %>
+    </div>
+  </div>
+<% end %>

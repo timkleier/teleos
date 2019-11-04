@@ -1,4 +1,4 @@
-<%= form_with(model: content_item, local: true) do |form| %>
+<%= form_with(model: content_item, local: true, class: 'ui form') do |form| %>
   <% if content_item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(content_item.errors.count, "error") %> prohibited this content_item from being saved:</h2>
@@ -26,7 +26,14 @@
     <%= form.text_field :authors %>
   </div>
 
+  <h4 class="ui dividing header">Sources</h4>
+  <%= form.fields_for :content_sources do |builder| %>
+    <%= render 'content_source_fields', f: builder %>
+  <% end %>
+
+  <%= link_to_add_fields 'Add Source', form, :content_sources %>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Save", class: 'ui button' %>
   </div>
 <% end %>
