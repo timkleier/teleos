@@ -16,7 +16,7 @@ namespace :db do
         ContentSource.create(
           url: 'https://podcasts.apple.com/us/podcast/104-interview-with-stacey-sumereau/id1118889657?i=1000451962042',
           content_type: audio
-        ),
+        ), 
         ContentSource.create(
           url: 'https://www.stitcher.com/podcast/roy-petitfils-2/todays-teenager',
           content_type: audio

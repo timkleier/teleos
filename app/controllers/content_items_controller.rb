@@ -14,7 +14,7 @@ class ContentItemsController < ApplicationController
 
   # GET /content_items/new
   def new
-    @content_item = ContentItem.new
+    @content_item = ContentItem.new(content_sources: ContentSource.new)
   end
 
   # GET /content_items/1/edit
@@ -71,8 +71,7 @@ class ContentItemsController < ApplicationController
     def content_item_params
       params.require(:content_item).permit(
         :title, :description, :authors,
-        content_type: [:name],
-        content_sources: [:url]
+        content_sources_attributes: [:url]
         # content_source_attributes: [:url]
       )
     end

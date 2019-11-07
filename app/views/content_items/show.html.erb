@@ -8,7 +8,7 @@
 
 <h2 class="ui header">Sources</h2>
 <div class="ui list">
-  <% @content_item.content_sources.with_associations(:content_type).each do |source| %>
+  <% @content_item.content_sources&.each do |source| %>
     <%= link_to source.url, class: 'item', target: "_blank" do %>
       <%= content_type_icon(source.content_type.name) %>
       <div class="content">

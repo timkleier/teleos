@@ -8,7 +8,6 @@ module Nestable
     # options[:reject_if] = REJECT_ALL_BLANK_PROC if options[:reject_if] == :all_blank
 
     attr_names.each do |association_name|
-      byebug
       if reflection = _reflect_on_association(association_name)
         reflection.autosave = true
         define_autosave_validation_callbacks(reflection)
