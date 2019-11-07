@@ -4,5 +4,5 @@ class ContentType
 
   CONTENT_TYPES = ['Text', 'Audio', 'Video']
 
-  # has_many :in, :content_sources, type: :HAS_CONTENT_SOURCE
+  has_many :in, :content_sources, type: :HAS_CONTENT_SOURCE
 end
