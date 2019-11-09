@@ -25,7 +25,7 @@ class ContentItemsController < ApplicationController
   # POST /content_items.json
   def create
     @content_item = ContentItem.new(content_item_params)
-
+byebug
     respond_to do |format|
       if @content_item.save
         format.html { redirect_to @content_item, notice: 'Content item was successfully created.' }
@@ -71,8 +71,7 @@ class ContentItemsController < ApplicationController
     def content_item_params
       params.require(:content_item).permit(
         :title, :description, :authors,
-        content_sources_attributes: [:url]
-        # content_source_attributes: [:url]
+        content_sources_attributes: [:id, :url]
       )
     end
 end

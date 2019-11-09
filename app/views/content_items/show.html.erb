@@ -10,7 +10,7 @@
 <div class="ui list">
   <% @content_item.content_sources&.each do |source| %>
     <%= link_to source.url, class: 'item', target: "_blank" do %>
-      <%= content_type_icon(source.content_type.name) %>
+      <% # content_type_icon(source.content_type.name) %>
       <div class="content">
         <div class="header"><%= source.url %></div>
       </div>
