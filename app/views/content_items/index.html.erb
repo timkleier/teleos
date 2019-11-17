@@ -19,6 +19,11 @@
         </div>
         <div class="extra">
           <div class="ui label">Label</div>
+          <div class="right floated content">
+            <% content_item.content_type_names.each do |name| %>
+              <%= content_type_icon(name) %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ class ContentItemsController < ApplicationController
   # GET /content_items
   # GET /content_items.json
   def index
-    @content_items = ContentItem.all
+    @content_items = ContentItem.all.with_associations(content_sources: :content_type)
   end
 
   # GET /content_items/1
@@ -25,7 +25,7 @@ class ContentItemsController < ApplicationController
   # POST /content_items.json
   def create
     @content_item = ContentItem.new(content_item_params)
-byebug
+
     respond_to do |format|
       if @content_item.save
         format.html { redirect_to @content_item, notice: 'Content item was successfully created.' }
@@ -71,7 +71,10 @@ byebug
     def content_item_params
       params.require(:content_item).permit(
         :title, :description, :authors,
-        content_sources_attributes: [:id, :url]
+        content_sources_attributes: [
+          :id, :url, :content_type
+          # content_type_attributes: [:name]
+        ]
       )
     end
 end

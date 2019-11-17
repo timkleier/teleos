@@ -2,16 +2,21 @@ require_relative 'boot'
 
 require "rails"
 # Pick the frameworks you want:
-require "active_model/railtie"
-require "active_job/railtie"
-# require "active_record/railtie"
-require 'neo4j/railtie'
-# require "active_storage/engine"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "action_view/railtie"
+%w(
+  active_model
+  active_job
+  action_controller
+  action_mailer
+  action_view
+  sprockets
+  neo4j
+).each do |framework|
+  begin
+    require "#{framework}/railtie"
+  rescue LoadError
+  end
+end
 require "action_cable/engine"
-require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -21,20 +26,21 @@ Bundler.require(*Rails.groups)
 module Teleos
   class Application < Rails::Application
 
-    config.generators do |g|
-      g.orm             :neo4j
-    end
+    config.generators { |g| g.orm :neo4j }
 
-    # Configure where to connect to the Neo4j DB
-    # Note that embedded db is only available for JRuby
-    # config.neo4j.session.type = :http
-    # config.neo4j.session.url = 'http://localhost:7474'
-    #  or
-    # config.neo4j.session.type = :bolt
-    # config.neo4j.session.url = 'bolt://localhost:7687'
-    #  or
-    # config.neo4j.session.type = :embedded
-    # config.neo4j.session.path = Rails.root.join('neo4j-db').to_s
+    config.neo4j.session.options = {
+      faraday_configurator: proc do |faraday|
+        # The default configurator uses typhoeus (it was `Faraday::Adapter::NetHttpPersistent` for `neo4j-core` < 7.1.0), so if you override the configurator you must specify this
+        faraday.adapter :typhoeus
+        # Optionally you can instead specify another adaptor
+        # faraday.use Faraday::Adapter::NetHttpPersistent
+
+        # If you need to set options which would normally be the second argument of `Faraday.new`, you can do the following:
+        faraday.options[:open_timeout] = 5
+        faraday.options[:timeout] = 65
+        # faraday.options[:ssl] = { verify: true }
+      end
+    }
 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2

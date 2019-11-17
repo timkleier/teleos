@@ -1,6 +1,6 @@
 module ContentItemsHelper
 
-  def content_type_icon(type)
+  def content_type_icon(type, size = nil)
     icon = case type
     when 'Audio'
       'headphones'
@@ -9,6 +9,6 @@ module ContentItemsHelper
     when 'Text'
       'file alternate outline'
     end
-    semantic_icon("big #{icon}")
+    semantic_icon("#{size} #{icon}")
   end
 end

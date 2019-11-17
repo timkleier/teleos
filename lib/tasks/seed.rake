@@ -16,10 +16,20 @@ namespace :db do
         ContentSource.create(
           url: 'https://podcasts.apple.com/us/podcast/104-interview-with-stacey-sumereau/id1118889657?i=1000451962042',
           content_type: audio
-        ), 
+        ),
         ContentSource.create(
           url: 'https://www.stitcher.com/podcast/roy-petitfils-2/todays-teenager',
           content_type: audio
+        )
+      ]
+    )
+
+    raise_a_boy = ContentItem.create(
+      title: 'How To Raise A Boy: The Power of Connection to Build Good Men',
+      content_sources: [
+        ContentSource.create(
+          url: 'https://www.amazon.com/How-Raise-Boy-Power-Connection/dp/0143133209',
+          content_type: text
         )
       ]
     )
@@ -31,7 +41,8 @@ namespace :db do
           url: 'https://podcasts.apple.com/us/podcast/103-dr-michael-reichert-talks-raising-healthy-boys/id1118889657?i=1000446380060',
           content_type: audio
         )
-      ]
+      ],
+      related_items: [raise_a_boy]
     )
 
     ContentItem.create(

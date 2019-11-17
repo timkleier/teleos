@@ -4,21 +4,19 @@
 
 <h1 class="ui center aligned header"><%= @content_item.title %></h1>
 
-<div class="ui divider"></div>
-
-<h2 class="ui header">Sources</h2>
-<div class="ui list">
-  <% @content_item.content_sources&.each do |source| %>
-    <%= link_to source.url, class: 'item', target: "_blank" do %>
-      <% # content_type_icon(source.content_type.name) %>
-      <div class="content">
-        <div class="header"><%= source.url %></div>
-      </div>
+<div class="ui grey inverted segment">
+  <h2 class="ui header">Sources</h2>
+  <div class="ui divided inverted relaxed list">
+    <% @content_item.content_sources&.each do |source| %>
+      <%= link_to source.url, class: 'item', target: "_blank" do %>
+        <%= content_type_icon(source.content_type.name, 'big') %>
+        <div class="content">
+          <div class="header"><%= source.display_name %></div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
-
-<div class="ui divider"></div>
 
 <h2 class="ui header">Description</h2>
 <div>
