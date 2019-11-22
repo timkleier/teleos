@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Frameworks</h1>
+
+<div class="ui two column grid">
+  <% @frameworks.each do |framework| %>
+    <div class="column">
+      <%= link_to framework, class: 'ui fluid card' do %>
+        <div class="image">
+          <img src="<%= framework.content_sources[0].image %>">
+        </div>
+        <div class="content">
+          <div class="header">
+            <%= framework.title %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to 'New Framework', new_framework_path %>

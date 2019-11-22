@@ -4,6 +4,10 @@ class ContentSource
   property :host, type: String
   property :display_name, type: String
   property :root_url, type: String
+  property :feed, type: String
+  property :title, type: String
+  property :description, type: String
+  property :image, type: String
 
   has_one :in, :content_item, type: :BELONGS_TO_CONTENT_ITEM
   has_one :out, :content_type, type: :BELONGS_TO_CONTENT_TYPE
@@ -13,17 +17,16 @@ class ContentSource
   private
 
   def parse_source
-    construct_display_name
     retrieve_metadata
+    construct_display_name
   end
 
   def construct_display_name
-    uri = URI(self.url)
-    display_name = display_name_mapper(uri.host)
-    self.display_name = display_name || uri.host
+    display_name = display_name_mapper
+    self.display_name = display_name || host
   end
 
-  def display_name_mapper(host)
+  def display_name_mapper
     case host
       when 'books.google.com' then 'Google Books'
       when 'www.amazon.com' then 'Amazon'
@@ -33,11 +36,12 @@ class ContentSource
   end
 
   def metainspector_fields
-    %w[root_url]
+    %w[root_url title description feed]
   end
 
   def retrieve_metadata
     meta_source = MetaInspector.new(url)
     metainspector_fields.each{|attr| send("#{attr}=", meta_source.send(attr))}
+    self.image = meta_source.images.best
   end
 end

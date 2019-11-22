@@ -4,7 +4,7 @@ class ContentItemsController < ApplicationController
   # GET /content_items
   # GET /content_items.json
   def index
-    @content_items = ContentItem.all.with_associations(content_sources: :content_type)
+    @content_items = ContentItem.all.with_associations(:tags, content_sources: :content_type)
   end
 
   # GET /content_items/1

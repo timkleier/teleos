@@ -9,6 +9,6 @@ module ContentItemsHelper
     when 'Text'
       'file alternate outline'
     end
-    semantic_icon("#{size} #{icon}")
+    semantic_icon("#{size} #{icon} teal")
   end
 end

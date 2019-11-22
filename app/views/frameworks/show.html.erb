@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to semantic_icon('angle left large link'), frameworks_path %>
+
+<h1 class="ui center aligned header"><%= @framework.title %></h1>
+
+<div class="ui two column grid">
+  <% @tags.each do |tag| %>
+    <div class="column">
+      <%= link_to framework_path(@framework, tag_id: tag.id), class: "ui fluid card" do %>
+        <div class="content">
+          <div class="center aligned header">
+            <%= tag.name %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

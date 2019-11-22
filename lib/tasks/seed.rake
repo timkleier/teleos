@@ -7,6 +7,53 @@ namespace :db do
     video = ContentType.create(name: 'Video')
     text = ContentType.create(name: 'Text')
 
+    # Framework - Development Across the Life Span
+    puts "Framework - Development Across the Life Span"
+    framework = Framework.create(
+      title: 'Development Across the Life Span',
+      description: 'A compelling blend of lifespan development research and applications Development Across the Life Span provides a chronological overview of human development from the moment of conception through death, examining both the traditional areas of the field and more recent innovations. Author Robert Feldman focuses on how developmental findings can be can be applied meaningfully and practically, helping students to recognize the relevance of the discipline to their own lives. Thoroughly updated with the latest data and contemporary examples, the Eighth Edition better engages students in key concepts via recent news items, timely world events, and contemporary uses of lifespan development.',
+      content_sources: [
+        ContentSource.create(
+          url: 'http://www.mypearsonstore.com/bookstore/development-across-the-life-span-0134225899',
+          content_type: text
+        )
+      ]
+    )
+
+    depth_0 = Tag.create(name: 'Human Development', framework: framework)
+    framework.update(tags: [depth_0])
+
+    tag_1 = Tag.create(name: 'Infancy: Forming the Foundations of Life')
+    TagChild.create(from_node: depth_0, to_node: tag_1, depth: 1)
+    tag_2 = Tag.create(name: 'The Preschool Years')
+    TagChild.create(from_node: depth_0, to_node: tag_2, depth: 1)
+    tag_3 = Tag.create(name: 'The Middle Childhood Years')
+    TagChild.create(from_node: depth_0, to_node: tag_3, depth: 1)
+    tag_4 = Tag.create(name: 'Adolescence')
+    TagChild.create(from_node: depth_0, to_node: tag_4, depth: 1)
+    tag_5 = Tag.create(name: 'Early Adulthood')
+    TagChild.create(from_node: depth_0, to_node: tag_5, depth: 1)
+    tag_6 = Tag.create(name: 'Middle Adulthood')
+    TagChild.create(from_node: depth_0, to_node: tag_6, depth: 1)
+    tag_7 = Tag.create(name: 'Late Adulthood')
+    TagChild.create(from_node: depth_0, to_node: tag_7, depth: 1)
+
+    tag_10 = Tag.create(name: 'General')
+    TagChild.create(from_node: tag_4, to_node: tag_10, depth: 2)
+    tag_11 = Tag.create(name: 'Physical')
+    TagChild.create(from_node: tag_4, to_node: tag_11, depth: 2)
+    tag_12 = Tag.create(name: 'Cognitive')
+    TagChild.create(from_node: tag_4, to_node: tag_12, depth: 2)
+    tag_13 = Tag.create(name: 'Social')
+    TagChild.create(from_node: tag_4, to_node: tag_13, depth: 2)
+    tag_14 = Tag.create(name: 'Personality')
+    TagChild.create(from_node: tag_4, to_node: tag_14, depth: 2)
+
+    tag_20 = Tag.create(name: 'Adolescence')
+    TagChild.create(from_node: tag_10, to_node: tag_20, depth: 3)
+    tag_21 = Tag.create(name: 'Physical Growth')
+    TagChild.create(from_node: tag_11, to_node: tag_21, depth: 3)
+
     # 4.0 Adolescence
     puts "Creating 4.0 Adolescence Content Items"
     ContentItem.create(
@@ -21,7 +68,8 @@ namespace :db do
           url: 'https://www.stitcher.com/podcast/roy-petitfils-2/todays-teenager',
           content_type: audio
         )
-      ]
+      ],
+      tags: [tag_20]
     )
 
     raise_a_boy = ContentItem.create(
@@ -31,7 +79,8 @@ namespace :db do
           url: 'https://www.amazon.com/How-Raise-Boy-Power-Connection/dp/0143133209',
           content_type: text
         )
-      ]
+      ],
+      tags: [tag_20]
     )
 
     ContentItem.create(
@@ -42,6 +91,7 @@ namespace :db do
           content_type: audio
         )
       ],
+      tags: [tag_20],
       related_items: [raise_a_boy]
     )
 
@@ -57,7 +107,8 @@ namespace :db do
           url: 'https://www.amazon.com/Years-Explained-Healthy-Adolescent-Development/dp/0615302467',
           content_type: text
         )
-      ]
+      ],
+      tags: [tag_20]
     )
 
     ContentItem.create(
@@ -77,7 +128,8 @@ namespace :db do
           url: 'https://www.wiley.com/en-us/Surviving+Your+Child%27s+Adolescence%3A+How+to+Understand%2C+and+Even+Enjoy%2C+the+Rocky+Road+to+Independence-p-9781118228838',
           content_type: text
         )
-      ]
+      ],
+      tags: [tag_20, Tag.create(name: 'Adolescent Independence')]
     )
 
     # 4.1 Adolescence
@@ -91,7 +143,8 @@ namespace :db do
           url: 'https://www.chop.edu/conditions-diseases/growing-child-adolescent-13-18-years#targetText=Adolescence%20is%20a%20time%20for,visible%20at%20the%20same%20time.',
           content_type: text
         )
-      ]
+      ],
+      tags: [tag_21]
     )
 
     ContentItem.create(
@@ -102,17 +155,20 @@ namespace :db do
           url: 'https://medlineplus.gov/ency/article/002003.htm',
           content_type: text
         )
-      ]
+      ],
+      tags: [tag_21]
     )
 
     ContentItem.create(
-      title: 'Adolescence is a time for growth spurts and puberty changes. An adolescent may grow several inches in several months followed by a period of very slow growth, then have another growth spurt. Changes with puberty (sexual maturation) may occur gradually or several signs may become visible at the same time.',
+      title: 'The Growing Child: Adolescent (13 to 18 Years)',
+      description: 'Adolescence is a time for growth spurts and puberty changes. An adolescent may grow several inches in several months followed by a period of very slow growth, then have another growth spurt. Changes with puberty (sexual maturation) may occur gradually or several signs may become visible at the same time.',
       content_sources: [
         ContentSource.create(
           url: 'https://www.chop.edu/conditions-diseases/growing-child-adolescent-13-18-years#targetText=Adolescence%20is%20a%20time%20for,visible%20at%20the%20same%20time.',
           content_type: text
         )
-      ]
+      ],
+      tags: [tag_21]
     )
 
     ContentItem.create(
@@ -122,7 +178,8 @@ namespace :db do
           url: 'https://www.khanacademy.org/test-prep/mcat/behavior/human-development/v/physical-development-in-adolescence',
           content_type: video
         )
-      ]
+      ],
+      tags: [tag_21]
     )
 
     ContentItem.create(
@@ -132,7 +189,8 @@ namespace :db do
           url: 'https://study.com/academy/lesson/physical-growth-in-adolescence.html',
           content_type: video
         )
-      ]
+      ],
+      tags: [tag_21]
     )
 
     ContentItem.create(
@@ -142,7 +200,8 @@ namespace :db do
           url: 'https://courses.lumenlearning.com/lifespandevelopment2/chapter/lecture-lesson-6-adolescence/',
           content_type: video
         )
-      ]
+      ],
+      tags: [tag_21]
     )
   end
 end

@@ -18,6 +18,11 @@
   </div>
 </div>
 
+<h2 class="ui header">Tags</h2>
+<% @content_item.tags.each do |tag| %>
+  <div class="ui teal label"><%= tag.name %></div>
+<% end %>
+
 <h2 class="ui header">Description</h2>
 <div>
   <%= @content_item.description&.truncate(400) %>

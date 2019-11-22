@@ -1,3 +1,20 @@
 // Place all the styles related to the ContentItems controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#content-items {
+  .item {
+    flex-direction: row;
+    -moz-flex-direction: row;
+    -webkit-flex-direction: row;
+    .content {
+      padding-left: 10px;
+    }
+  }
+}
+
+.content-item-list-image {
+  object-fit: cover;
+  width: 70px;
+  height: 70px;
+}

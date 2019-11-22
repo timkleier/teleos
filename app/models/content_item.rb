@@ -7,6 +7,7 @@ class ContentItem
 
   has_many :out, :content_sources, type: :HAS_CONTENT_SOURCE
   has_many :both, :related_items, type: :HAS_RELATED_ITEM, model_class: ContentItem
+  has_many :out, :tags, type: :HAS_TAG
 
   attr_accessor :content_sources_attributes, :content_type_attributes
 

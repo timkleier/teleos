@@ -17,8 +17,12 @@
 - CONSTRAINT ON ( contentitem:ContentItem ) ASSERT contentitem.uuid IS UNIQUE
 - CONSTRAINT ON ( contentsource:ContentSource ) ASSERT contentsource.uuid IS UNIQUE
 - CONSTRAINT ON ( contenttype:ContentType ) ASSERT contenttype.uuid IS UNIQUE
+- CONSTRAINT ON ( framework:Framework ) ASSERT framework.uuid IS UNIQUE
+- CONSTRAINT ON ( tag:Tag ) ASSERT tag.uuid IS UNIQUE
 :indexes: []
 :versions:
 - '20191026122957'
 - '20191026123209'
 - '20191026125427'
+- '20191119120051'
+- '20191119120755'
