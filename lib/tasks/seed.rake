@@ -182,7 +182,7 @@ namespace :db do
       tags: [tag_21]
     )
 
-    ContentItem.create(
+    physical = ContentItem.create(
       title: 'Physical Growth in Adolescence',
       content_sources: [
         ContentSource.create(
@@ -192,6 +192,7 @@ namespace :db do
       ],
       tags: [tag_21]
     )
+    tag_21.update(content_items: [physical])
 
     ContentItem.create(
       title: 'Lecture: Adolescence',

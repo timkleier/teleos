@@ -24,4 +24,5 @@
 /config/master.key
 
 # Neo4j
-db/neo4j/
+db/neo4j/development/*
+db/neo4j/environment/*
