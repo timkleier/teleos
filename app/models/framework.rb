@@ -11,6 +11,6 @@ class Framework
   end
 
   def content_items_for_tag(tag_id = nil)
-    
+    tag_id ? Tag.find(tag_id).content_items : []
   end
 end

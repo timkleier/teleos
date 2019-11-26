@@ -1,0 +1,26 @@
+<div id="content-items" class="ui fluid divided items">
+  <% content_items.each do |content_item| %>
+    <div class="item">
+      <%= image_tag content_item.content_sources[0].image, class: 'content-item-list-image' %>
+      <div class="content">
+        <%= link_to content_item.title.truncate(80), content_item, class: "header" %>
+        <div class="meta">
+          <span class="cinema"><%= content_item.authors %></span>
+        </div>
+        <div class="description">
+          <p><%= content_item.description&.truncate(150) %></p>
+        </div>
+        <div class="extra">
+          <% content_item.tags.each do |tag| %>
+            <div class="ui teal label"><%= tag.name %></div>
+          <% end %>
+          <div class="right floated content">
+            <% content_item.content_type_names.each do |name| %>
+              <%= content_type_icon(name, "large") %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

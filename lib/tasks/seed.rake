@@ -56,7 +56,7 @@ namespace :db do
 
     # 4.0 Adolescence
     puts "Creating 4.0 Adolescence Content Items"
-    ContentItem.create(
+    ci_1 = ContentItem.create(
       title: 'Interview with Stacey Sumereau',
       description: "Roy welcomes former professional Broadway actress, Stacey Sumerau. Stacey shares her experiences as a teen struggling to be the smartest, prettiest, and most talented performer she could be, how that struggle led to an eating disorder and ultimately, a spiritual transformation that informs her current work as a speaker who inspires teens to give their lives over to God's plan. Visit Stacey's official website for more on her speaking and experiences as a member of the Lifetime TV series, Sisterhood: Becoming Nuns. Roy has established Today's Teenager as a non-profit organization dedicated to covering the expenses of therapy sessions and other mental health services for teens and families that would otherwise be unable to afford them. Visit todaysteenager dot com for more information. Dr. Dore and her staff embrace their orthodontic patients like family. In addition to traditional metal and ceramic braces Dr. Dore enjoys using Invisalign clear aligners, and she is an Invisalign 'Preferred Provider.' Call her today for a free exam and Live Life Smiling at (337) 267-SMILE, or click here to learn more about Dr. Dore and her practice.",
       content_sources: [
@@ -72,7 +72,7 @@ namespace :db do
       tags: [tag_20]
     )
 
-    raise_a_boy = ContentItem.create(
+    ci_2 = ContentItem.create(
       title: 'How To Raise A Boy: The Power of Connection to Build Good Men',
       content_sources: [
         ContentSource.create(
@@ -83,7 +83,7 @@ namespace :db do
       tags: [tag_20]
     )
 
-    ContentItem.create(
+    ci_3 = ContentItem.create(
       title: 'Dr. Michael Reichert Talks Raising Healthy Boys',
       content_sources: [
         ContentSource.create(
@@ -92,10 +92,10 @@ namespace :db do
         )
       ],
       tags: [tag_20],
-      related_items: [raise_a_boy]
+      related_items: [ci_3]
     )
 
-    ContentItem.create(
+    ci_4 = ContentItem.create(
       title: 'The Teen Years Explained: A Guide to Healthy Adolescent Development',
       description: 'We idealize childhood and demonize adolescence, often viewing the typical teenager as a bundle of problems. Yet according to a new book, The Teen Years Explained: A Guide to Healthy Adolescent Development, by Clea McNeely, MPH, DrPH and Jayne Blanchard, adolescence can be a time of opportunity, not turmoil. By understanding the developmental stages and changes of adolescence, both teens and adults can get the most out of this second decade of life.  In plain English, this guide incorporates the latest scientific findings about physical, emotional, cognitive, identity formation, sexual and spiritual development with tips and strategies on how to use this information in real-life situations involving teens. Whether you have five minutes or five hours, you will find something useful in this book.  This practical and colorful guide to healthy adolescent development is an essential resource for parents, teens, and all people who work with young people.',
       content_sources: [
@@ -111,7 +111,7 @@ namespace :db do
       tags: [tag_20]
     )
 
-    ContentItem.create(
+    ci_5 = ContentItem.create(
       title: "Surviving Your Child's Adolescence: How to Understand, and Even Enjoy, the Rocky Road to Independence",
       description: "Expert suggestions for guiding your child through the rough teenage years
         Does it sometimes seem like your teenager is trying to push you over the edge? Learn what your child is going through and what you can do to help your teen navigate this difficult period in this practical guide from psychologist and parenting expert Carl Pickhardt. In an easy-to-read style, Dr. Pickhardt describes a 4-stage model of adolescent growth to help parents anticipate common developmental changes in their daughter or son from late elementary school through the college age years.",
@@ -132,10 +132,12 @@ namespace :db do
       tags: [tag_20, Tag.create(name: 'Adolescent Independence')]
     )
 
+    tag_20.update(content_items: [ci_1, ci_2, ci_3, ci_4, ci_5])
+
     # 4.1 Adolescence
     puts "Creating 4.1 Adolescence (Physical Growth) Content Items"
 
-    ContentItem.create(
+    ci_1 = ContentItem.create(
       title: 'The Growing Child: Adolescent (13 to 18 Years)',
       description: "The teenage years are also called adolescence. Adolescence is a time for growth spurts and puberty changes. An adolescent may grow several inches in several months followed by a period of very slow growth, then have another growth spurt. Changes with puberty (sexual maturation) may occur gradually or several signs may become visible at the same time. There is a great amount of variation in the rate of changes that may occur. Some teenagers may experience these signs of maturity sooner or later than others.",
       content_sources: [
@@ -147,7 +149,7 @@ namespace :db do
       tags: [tag_21]
     )
 
-    ContentItem.create(
+    ci_2 = ContentItem.create(
       title: 'Adolescent Development',
       description: 'The development of children ages 12 through 18 years old should include expected physical and mental milestones.',
       content_sources: [
@@ -159,7 +161,7 @@ namespace :db do
       tags: [tag_21]
     )
 
-    ContentItem.create(
+    ci_3 = ContentItem.create(
       title: 'The Growing Child: Adolescent (13 to 18 Years)',
       description: 'Adolescence is a time for growth spurts and puberty changes. An adolescent may grow several inches in several months followed by a period of very slow growth, then have another growth spurt. Changes with puberty (sexual maturation) may occur gradually or several signs may become visible at the same time.',
       content_sources: [
@@ -171,7 +173,7 @@ namespace :db do
       tags: [tag_21]
     )
 
-    ContentItem.create(
+    ci_4 = ContentItem.create(
       title: 'Physical Development in Adolescence',
       content_sources: [
         ContentSource.create(
@@ -182,7 +184,7 @@ namespace :db do
       tags: [tag_21]
     )
 
-    physical = ContentItem.create(
+    ci_5 = ContentItem.create(
       title: 'Physical Growth in Adolescence',
       content_sources: [
         ContentSource.create(
@@ -192,9 +194,8 @@ namespace :db do
       ],
       tags: [tag_21]
     )
-    tag_21.update(content_items: [physical])
 
-    ContentItem.create(
+    ci_6 = ContentItem.create(
       title: 'Lecture: Adolescence',
       content_sources: [
         ContentSource.create(
@@ -204,5 +205,7 @@ namespace :db do
       ],
       tags: [tag_21]
     )
+
+    tag_21.update(content_items: [ci_1, ci_2, ci_3, ci_4, ci_5, ci_6])
   end
 end
