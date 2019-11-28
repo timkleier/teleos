@@ -2,19 +2,26 @@
 
 <%= link_to semantic_icon('angle left large link'), content_items_path %>
 
-<h1 class="ui center aligned header"><%= @content_item.title %></h1>
+<div class="ui segments">
+  <div class="ui no-padding basic segment">
+    <%= image_tag @content_item.content_sources[0].image, class: 'content-item-image' %>
+  </div>
+  <div class="ui basic segment">
+    <h1 class="ui center aligned header"><%= @content_item.title %></h1>
+  </div>
 
-<div class="ui grey inverted segment">
-  <h2 class="ui header">Sources</h2>
-  <div class="ui divided inverted relaxed list">
-    <% @content_item.content_sources&.each do |source| %>
-      <%= link_to source.url, class: 'item', target: "_blank" do %>
-        <%= content_type_icon(source.content_type.name, 'big') %>
-        <div class="content">
-          <div class="header"><%= source.display_name %></div>
-        </div>
+  <div class="ui grey inverted segment">
+    <h2 class="ui header">Sources</h2>
+    <div class="ui divided inverted relaxed list">
+      <% @content_item.content_sources&.each do |source| %>
+        <%= link_to source.url, class: 'item', target: "_blank" do %>
+          <%= content_type_icon(source.content_type.name, 'big') %>
+          <div class="content">
+            <h4 class="ui inverted header"><%= source.display_name %></h4>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
 

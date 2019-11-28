@@ -22,8 +22,7 @@ class ContentSource
   end
 
   def construct_display_name
-    display_name = display_name_mapper
-    self.display_name = display_name || host
+    self.display_name = display_name_mapper
   end
 
   def display_name_mapper
@@ -32,11 +31,12 @@ class ContentSource
       when 'www.amazon.com' then 'Amazon'
       when 'podcasts.apple.com' then 'Apple Podcasts'
       when 'www.audible.com' then 'Audible'
+      else host
     end
   end
 
   def metainspector_fields
-    %w[root_url title description feed]
+    %w[root_url title description feed host]
   end
 
   def retrieve_metadata
